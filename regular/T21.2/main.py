@@ -10,7 +10,7 @@ def main(filename):
     with open(filename, 'r') as f:
         st = f.read()
 
-    return re.split(r' ', st)
+    return re.split(r'[ \n]', st)
 
 
 if __name__ == '__main__':
