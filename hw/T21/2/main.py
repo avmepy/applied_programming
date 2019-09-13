@@ -9,9 +9,9 @@ import re
 WORDS = ['error', 'warning', 'critical']
 
 
-def main(filename, words, register=True, whole=True):
+def main(filename_input, filename_output, words, register=True, whole=True):
 
-    with open(filename, 'r') as fin:
+    with open(filename_input, 'r') as fin:
         st = fin.read()
 
     for word in words:
@@ -28,8 +28,12 @@ def main(filename, words, register=True, whole=True):
 
         st = patt.sub('', st)
 
-    return st
+    with open(filename_output, 'w') as fout:
+        fout.write(st)
+
+
+
 
 if __name__ == '__main__':
-    print(main('input.txt', words=WORDS, register=False, whole=False))
+    main('input.txt', 'output.txt', words=WORDS, register=False, whole=False)
 
