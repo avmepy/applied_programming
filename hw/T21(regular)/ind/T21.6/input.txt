@@ -1,0 +1,7 @@
+niceandsimple@example.com
+
+simplewithsymbol@example.com
+less.common@example.com
+a.little.more.unusual@dept.example.com
+much.moreunusual@example.com
+very.unusual@example.com
