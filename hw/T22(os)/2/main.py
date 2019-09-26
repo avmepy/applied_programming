@@ -24,6 +24,5 @@ def compare(path1, path2, filename='result.txt'):
     with open(filename, 'w') as fout:
         fout.write('\n'.join(set1 ^ set2))
 
-
 if __name__ == '__main__':
     compare('dir1', 'dir2')
