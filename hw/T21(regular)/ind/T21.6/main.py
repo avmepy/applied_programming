@@ -8,7 +8,7 @@ import re
 def main(filename):
 
     res = []
-    patt = re.compile(r'[\w.]+@([\w-]+\.)+[\w-]{2,4}')
+    patt = re.compile(r'[\w\.]+@([\w-]+\.)+[\w-]{2,4}')
     with open(filename, 'r') as fin:
         for lines in fin:
             res += list(map(lambda x: x.group(), patt.finditer(lines)))

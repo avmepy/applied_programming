@@ -36,4 +36,3 @@ def clear(path):
 
 if __name__ == '__main__':
     clear('test')
-

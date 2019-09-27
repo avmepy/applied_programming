@@ -8,7 +8,9 @@ import _io
 from datetime import datetime
 import time
 
+
 CHUNK = 500 * 1024   # 500 KB
+
 
 def main(name: str, fin:_io.TextIOWrapper) -> tuple:
     if len(fin.read(CHUNK)) == CHUNK:
