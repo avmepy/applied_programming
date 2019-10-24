@@ -18,8 +18,8 @@ def main(filename_input, filename_output, c1=RGBColor(0, 0, 0), c2=RGBColor(255,
     for par in run_list:
         tmp = []
         for run in par:
-            if c1  == run.font.color.rgb == c1:
-                run.font.color.rgb = c2
+            if c1  == run.textFormat.color.rgb == c1:
+                run.textFormat.color.rgb = c2
             tmp.append(run)
         run_list_res.append(tmp)
 
