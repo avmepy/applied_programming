@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*-encoding: utf-8-*-
+# author: Valentyn Kofanov
+
 import socket
 
 
@@ -23,7 +27,7 @@ while True:
     if not data:
         break
 
-    pal = str(data, encoding='utf-8')
-    res = bytes(change_date(pal), encoding='utf-8')
+    date = str(data, encoding='utf-8')
+    res = bytes(change_date(date), encoding='utf-8')
     conn.sendall(res)
 conn.close()

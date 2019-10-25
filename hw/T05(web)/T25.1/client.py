@@ -1,9 +1,13 @@
+#!/usr/bin/env python3
+# -*-encoding: utf-8-*-
+# author: Valentyn Kofanov
+
 import socket
 
 HOST = 'localhost'
 PORT = 20004
 
-# створити гніздо
+
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST, PORT))
 while True:
