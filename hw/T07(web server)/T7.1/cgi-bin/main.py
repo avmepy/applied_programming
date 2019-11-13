@@ -11,12 +11,16 @@ HTML_PAGE = """Content-type: text/html; charset='utf-8'\n\n
 <html>
 <title>factorial check</title>
 <body>
-<h3>check result:</h3>
-<br>
-{}
-<br>
+<form method="POST" action="http://localhost:8000/cgi-bin/main.py">
+<p>Enter number: </p>
+<input type=text name=val value="">
+<input type=submit value="check">
+</form>
 </body>
 </html>
+<br>
+Result : {}
+<br>
 """
 
 def is_factorial(n :int) -> bool:
