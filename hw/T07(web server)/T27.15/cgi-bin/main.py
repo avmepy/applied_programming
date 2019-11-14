@@ -37,7 +37,12 @@ res = 0
 
 
 if "currency1" in data and "currency2" in data and "val" in data:
-    res = calc(str(data["currency1"].value), str(data["currency2"].value), float(data["val"].value))
+    c1 = str(data["currency1"].value)
+    c2 = str(data["currency2"].value)
+    v = str(data["val"].value)
+    ans = calc(c1, c2, float(v))
+    res = f'{v} {c1} = {ans} {c2}'
+
 
 HTML_PAGE = get_page()
 
