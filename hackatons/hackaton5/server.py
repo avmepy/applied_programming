@@ -75,7 +75,7 @@ def main():
     res = urlopen("https://uk.wikipedia.org/wiki/" + quote("Міста-мільйонники_світу"), context=ctx)
     content = res.read().decode(res.headers.get_content_charset())
     parser.feed(content)
-    return [rez[0]]
+    return rez
 
 
 def main2(URL="https://uk.wikipedia.org/wiki/" + quote("Міста-мільйонники_світу")):
