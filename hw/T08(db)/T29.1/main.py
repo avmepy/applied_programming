@@ -57,8 +57,8 @@ class BirthdayDB:
         conn = sqlite3.connect(self.filename)
         curs = conn.cursor()
         curs.execute("""SELECT name FROM  friends_table 
-                    WHERE abs(strftime('%s','now') % ?  - birthday % ? ) < ? % ?""",
-                     (BirthdayDB.YEAR, BirthdayDB.YEAR, BirthdayDB.WEEK, BirthdayDB.YEAR))
+                    WHERE abs(strftime('%s','now') % ?  - birthday % ? ) < ?""",
+                     (BirthdayDB.YEAR, BirthdayDB.YEAR, BirthdayDB.WEEK))
 
         res = curs.fetchall()
         conn.commit()

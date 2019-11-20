@@ -16,11 +16,12 @@ HTML_PAGE = """Content-type: text/html; charset='utf-8'\n\n
 <input type=text name=val value="">
 <input type=submit value="check">
 </form>
-</body>
-</html>
 <br>
 Result : {}
 <br>
+</body>
+</html>
+
 """
 
 def is_factorial(n :int) -> bool:
