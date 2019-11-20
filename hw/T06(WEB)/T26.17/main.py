@@ -15,7 +15,8 @@ ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
 
-P_DATE = r'\d{2}\.\d{2}\.\d{2}'
+P_DATE_LIGA = r'\d{2}\.\d{2}\.\d{2}'
+P_DATE_PRAVDA = r'\d{2}\.\d{2}\.\d{4}'
 P_ENC = r'\bcharset=(?P<ENC>.+)\b'
 
 
@@ -57,7 +58,7 @@ class LigaNetParser(html.parser.HTMLParser):
     def handle_data(self, data):
         # print('DATA', data)
         if self._in_article:
-            if re.match(P_DATE, data):
+            if re.match(P_DATE_LIGA, data):
                 self._mentions.append(data[:8])
 
     def error(self, message):
@@ -131,7 +132,7 @@ class LigaNet:
 
 class PravdaNewsParser(html.parser.HTMLParser):
     """
-    https://www.pravda.com.ua/archives/date_05022014/
+    https://www.pravda.com.ua/rus/archives/date_05022014/
     """
     def __init__(self, *args, **kwargs):
         html.parser.HTMLParser.__init__(self, *args, **kwargs)
@@ -151,7 +152,7 @@ class PravdaNewsParser(html.parser.HTMLParser):
     def handle_data(self, data):
         # print('DATA', data)
         if self._in_article:
-            if re.match(P_DATE, data):
+            if re.match(P_DATE_PRAVDA, data):
                 self._mentions.append(data[:10])
 
     def error(self, message):
