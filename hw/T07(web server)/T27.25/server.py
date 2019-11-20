@@ -3,10 +3,11 @@
 # author: Valentyn Kofanov
 
 import cgi
+from copy import deepcopy
 
 PORT = 8000
 
-HTML_PAGE = """<!DOCTYPE html>
+TRAVEL_PAGE = """<!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -32,6 +33,10 @@ HTML_PAGE = """<!DOCTYPE html>
 	</body>
 </html>
 """
+
+ADD_PAGE = ''
+
+HTML_PAGE = deepcopy(TRAVEL_PAGE)
 
 
 class Person:
@@ -78,7 +83,7 @@ class Passenger(Person):
 
 
 
-def application(environ, start_response):
+def application(environ, start_response, filename="travel.txt"):
     """Викликається WSGI-сервером.
 
        Отримує оточення environ та функцію,
@@ -89,6 +94,7 @@ def application(environ, start_response):
         # отримати словник параметрів, переданих з HTTP-запиту
         form = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
         result = ''
+        HTML_PAGE = TRAVEL_PAGE
         if 'departure' in form and 'destination' in form and 'name' in form and 'byear' in form:
             name = str(form['name'].value)
             byear = str(form['byear'].value)
@@ -98,8 +104,22 @@ def application(environ, start_response):
             p = Passenger(name=name, byear=byear, departure=departure, destination=destination)
 
             result = f'{name}{byear} , departure: {departure}, destination {destination}, ticket price = {p.get_price()}'
+
+            HTML_PAGE = deepcopy(TRAVEL_PAGE)
+
+        elif 'depar' in form and 'destin' in form and 'price' in form:
+            depar = str(form['depar'].value)
+            destin = str(form['destin'].value)
+            price = str(form['price'].value)
+            with open(filename, 'a') as f:
+                f.write(f'{depar} {destin} {price}')
+
+            HTML_PAGE = ADD_PAGE
+
         body = HTML_PAGE.format(result)
         start_response('200 OK', [('Content-Type', 'text/html; charset=utf-8')])
+
+
     else:
         # якщо команда невідома, то виникла помилка
         start_response('404 NOT FOUND', [('Content-Type', 'text/plain')])
