@@ -40,7 +40,7 @@ def calc(curr1, curr2, num, filename="exchange.xlsx"):
 
 data = cgi.FieldStorage()
 
-res = 0
+res = ''
 
 
 
