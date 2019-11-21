@@ -45,13 +45,27 @@ class Library:
     def find(self, author, name, year):
         conn = sqlite3.connect(self.filename)
         curs = conn.cursor()
-        curs.execute("SELECT * FROM library WHERE author = ? AND name = ? AND year = ?",
-                     (author, name, year))
+
+        params = []
+        if author:
+            params.append(('author = ?', author))
+        if name:
+            params.append(('name = ?', name))
+        if year:
+            params.append(('year = ?', year))
+
+        query = ' AND '.join(i[0] for i in params)
+
+        if query != "":
+            query = " WHERE " + query
+
+
+        curs.execute(f"SELECT * FROM library {query}", (tuple(i[1] for i in params)))
 
         res = curs.fetchall()
         conn.commit()
         conn.close()
-        return res
+        return list(res)
 
 
 
@@ -112,29 +126,29 @@ class SearchApp(App):
 
 
         author = self.author_input.text
-        if not author:
-            author = '*'
+        # if not author:
+        #     author = '*'
         name = self.name_input.text
-        if not author:
-            name = '*'
+        # if not author:
+        #     name = '*'
         year = self.year_input.text
-        if not author:
-            year = '*'
+        # if not author:
+        #     year = '*'
 
 
-        text = str(self.db.find(author, name, year))
+        text = '\n'.join(list(' '.join(i) for i in self.db.find(author, name, year)))
 
         content = AnchorLayout()
         bl = BoxLayout(orientation="vertical", spacing=5)
 
         bl.add_widget(Label(text=text))
-        bl.add_widget(Button(text="close", on_press=close))
+        bl.add_widget(Button(text="close", on_press=close, size_hint=(1, .4)))
 
         content.add_widget(bl)
 
 
 
-        popup = Popup(title='search result: ', content=content, size_hint=(None, None), size=(400, 400))
+        popup = Popup(title='search result: ', content=content, size_hint=(None, None), size=(500, 800))
         popup.open()
 
 
