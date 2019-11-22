@@ -84,14 +84,7 @@ class Passenger(Person):
 
 
 def application(environ, start_response, filename="travel.txt"):
-    """Викликається WSGI-сервером.
-
-       Отримує оточення environ та функцію,
-       яку треба викликати у відповідь: start_response.
-       Повертає відповідь, яка передається клієнту.
-    """
     if environ.get('PATH_INFO', '').lstrip('/') == '':
-        # отримати словник параметрів, переданих з HTTP-запиту
         form = cgi.FieldStorage(fp=environ['wsgi.input'], environ=environ)
         result = ''
         HTML_PAGE = TRAVEL_PAGE
@@ -121,14 +114,12 @@ def application(environ, start_response, filename="travel.txt"):
 
 
     else:
-        # якщо команда невідома, то виникла помилка
         start_response('404 NOT FOUND', [('Content-Type', 'text/plain')])
         body = 'Сторінку не знайдено'
     return [bytes(body, encoding='utf-8')]
 
 
 if __name__ == '__main__':
-    # створити та запуститити WSGI-сервер
     from wsgiref.simple_server import make_server
     print('=== Local WSGI webserver ===')
     print(f'http://localhost:{PORT}')
