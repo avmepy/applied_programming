@@ -20,7 +20,7 @@ def main(filename_input, filename_output, c1=RGBColor(255, 0, 0), c2=RGBColor(45
             run = paragraph.runs[i]
             if run.font.color.rgb == c1:
                 run.font.color.rgb = c2
-                print(1)
+                # print(1)
 
             r = p.add_run()
             r.text = run.text
@@ -29,4 +29,4 @@ def main(filename_input, filename_output, c1=RGBColor(255, 0, 0), c2=RGBColor(45
     doc2.save(filename_output)
 
 if __name__ == '__main__':
-    main('res.docx', 'test.docx')
+    main('res.docx', 'test.docx', c1=RGBColor(125, 125, 125), c2=RGBColor(255, 0, 0))
