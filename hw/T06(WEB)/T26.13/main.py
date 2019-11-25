@@ -67,7 +67,6 @@ class ElleParser(html.parser.HTMLParser):
 
 
 class Elle:
-    # FIND_URL = "https://www.liga.net/search/result/page/{page}/q/{query}"
     FIND_URL = 'https://elle.ua/astro/{query}/'
     ENC = 'utf-8'
 
