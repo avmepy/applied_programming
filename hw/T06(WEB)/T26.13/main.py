@@ -71,7 +71,7 @@ class Elle:
     ENC = 'utf-8'
 
     def __init__(self, signs: list):
-        self._signs = dict().fromkeys(signs, 0)
+        self._signs = dict().fromkeys(signs, "")
 
         for politician in signs:
             self._signs[politician] = self._find_mentions(politician)
