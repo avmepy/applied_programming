@@ -224,7 +224,6 @@ class PravdaNews:
         return self._politics
 
 
-
 if __name__ == '__main__':
     s1, s2 = "01.11.2019", "20.11.2019"
     politicians = ["Зеленский", "Порошенко", "Гончарук"]
@@ -235,11 +234,11 @@ if __name__ == '__main__':
     # end_date = datetime.datetime.strptime(input("to [dd.mm.yyyy]: "), '%d.%m.%Y')
 
 
-    print("testing.....")
+    # print("testing.....")
     print(f'date from: {s1}   date to: {s2}')
     # print(f'politicians: {" ".join(politicians)}')
 
-    # print('=========# https://www.liga.net/ #=========')
+    print('=========# https://www.liga.net/ #=========')
     news = LigaNet(start_date, end_date, politicians)
     for a, b in news.mentions.items():
         print(f'Politician: {a} mention number: {b}')

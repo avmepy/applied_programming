@@ -28,5 +28,6 @@ def main(filename_input, filename_output, c1=RGBColor(255, 0, 0), c2=RGBColor(45
 
     doc2.save(filename_output)
 
+
 if __name__ == '__main__':
     main('res.docx', 'test.docx', c1=RGBColor(125, 125, 125), c2=RGBColor(255, 0, 0))

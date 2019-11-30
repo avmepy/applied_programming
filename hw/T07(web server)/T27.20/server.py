@@ -7,6 +7,7 @@ from datetime import datetime
 
 PORT = 8000
 
+
 class Person:
 
     def __init__(self, name=None, byear=None):
@@ -37,9 +38,9 @@ class Driver(Person):
         Person.print(self)
         print(self.cost, self.capacity, end=" ")
 
-
     def get_pay(self, km):
         return self.capacity * km * self.cost
+
 
 def prepare(filename="driver_list.txt"):
     PAT = '<option value="{}"> {} </option>'
@@ -52,13 +53,11 @@ def prepare(filename="driver_list.txt"):
         page = page.read().format('\n'.join(names), '{answer}')
     return page
 
+
 def get_add_page():
     with open("add_page.html") as fin:
         page = fin.read()
     return page
-
-
-
 
 
 def application(environ, start_response, filename="driver_list.txt"):

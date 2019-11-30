@@ -75,12 +75,11 @@ class Passenger(Person):
         price = -1
         for route in travel_list:
             if ((route[0] == self.departure and route[1] == self.destination) or
-                (route[1] == self.departure and route[0] == self.destination)):
+                    (route[1] == self.departure and route[0] == self.destination)):
                 price = 2.5 * float(route[2])
                 break
 
         return price
-
 
 
 def application(environ, start_response, filename="travel.txt"):
@@ -121,10 +120,8 @@ def application(environ, start_response, filename="travel.txt"):
 
 if __name__ == '__main__':
     from wsgiref.simple_server import make_server
+
     print('=== Local WSGI webserver ===')
     print(f'http://localhost:{PORT}')
     httpd = make_server('localhost', PORT, application)
     httpd.serve_forever()
-
-
-

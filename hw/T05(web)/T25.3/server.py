@@ -9,6 +9,7 @@ import re
 
 mails = []
 
+
 def mail(string):
     global mails
 
